@@ -70,7 +70,7 @@ class App extends Component {
 	};
 	
 	onPictureSubmit = () => {
-		this.setState({ imageUrl: this.state.input });
+		this.setState({ imageUrl: this.state.input, input: '' });
 			fetch('https://afternoon-cliffs-28203.herokuapp.com/imageurl', {
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
@@ -90,7 +90,7 @@ class App extends Component {
 					})
 						.then(response => response.json())
 						.then(count => {
-							this.setState(Object.assign(this.state.user, { entries: count}))
+							this.setState(Object.assign(this.state.user, { entries: count }))
            				})
 						.catch(console.log)
 				}
@@ -126,6 +126,7 @@ class App extends Component {
 							onInputChange={this.onInputChange} 
 							onKeyPress={this.onKeyPress}
 							onPictureSubmit={this.onPictureSubmit}
+							input={this.state.input}
 						/>
 						<FaceRecognition box={box} imageUrl={imageUrl}/>
 					</div>
